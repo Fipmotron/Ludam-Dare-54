@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Scripts/Player.gd" type="Script" id=1]
+[ext_resource path="res://Sprites/Game Objects/ProtoSquare.png" type="Texture" id=2]
+
+[sub_resource type="CircleShape2D" id=1]
+radius = 6.0
+
+[node name="Player1" type="KinematicBody2D"]
+script = ExtResource( 1 )
+Max_Speed = 100.0
+Acceleration = 5.0
+Turn_Speed = 5.0
+Decceleration = 10.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+z_index = 2
+shape = SubResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( -5.96046e-08, -5.96046e-08 )
+scale = Vector2( 0.75, 0.75 )
+texture = ExtResource( 2 )
+
+[node name="Sprite2" type="Sprite" parent="."]
+position = Vector2( 8, 2.38419e-07 )
+scale = Vector2( 0.25, 0.25 )
+texture = ExtResource( 2 )
