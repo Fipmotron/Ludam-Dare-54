@@ -1,16 +1,13 @@
-extends Node2D
+extends KinematicBody2D
 
+export var Speed := 0.0
 
-# Declare member variables here. Examples:
-# var a = 2
-# var b = "text"
+var Velocity := Vector2(1, 0)
 
+func _physics_process(_delta):
+	Velocity += Speed * Vector2(1, 0).rotated(rotation)
+	
+	Velocity = move_and_slide(Velocity)
 
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-#func _process(delta):
-#	pass
+func _on_BulletDetection_area_entered(area):
+	queue_free()

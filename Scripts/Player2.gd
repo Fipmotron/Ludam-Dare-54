@@ -38,7 +38,7 @@ func _physics_process(delta):
 	if HDirection != 0.0 and not Is_HeavyAttacking:
 		_Rotation_Handler()
 	
-	if Input.is_action_just_pressed("P1_ShootLight"):
+	if Input.is_action_just_pressed("P2_ShootLight"):
 		_Ranged_Attack()
 	
 	Velocity = move_and_slide(Velocity)
@@ -70,8 +70,8 @@ func _Rotation_Handler():
 		rotation_degrees -= Turn_Speed 
 
 func _Direction_Handler():
-	HDirection = Input.get_action_strength("P1_MoveRight") - Input.get_action_strength("P1_MoveLeft")
-	VDirection = Input.get_action_strength("P1_MoveDown") - Input.get_action_strength("P1_MoveUp")
+	HDirection = Input.get_action_strength("P2_MoveRight") - Input.get_action_strength("P2_MoveLeft")
+	VDirection = Input.get_action_strength("P2_MoveDown") - Input.get_action_strength("P2_MoveUp")
 
 func _Ranged_Attack():
 	# Get Instance of Bullet
