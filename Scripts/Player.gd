@@ -22,26 +22,34 @@ var Is_HeavyAttacking := false
 
 onready var SignalManager := get_parent()
 
+var End_Game = false
+var Can_Move = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	SignalManager.connect("End_Game", self, "_End_Game")
+	SignalManager.connect("Restart_Game", self, "_Reset")
+	SignalManager.connect("Go_To_MainMenu", self, "_Disable")
+	SignalManager.connect("Go_To_PVP", self, "_Start")
+	SignalManager.connect("Go_To_Tutorial", self, "_Start")
 
 func _physics_process(delta):
 	_Print()
 	_Direction_Handler()
 	
-	if VDirection != 0.0 and not Is_HeavyAttacking:
-		_Acceleration_Handler()
-	else:
-		_Decceleration_Handler()
-	
-	if HDirection != 0.0 and not Is_HeavyAttacking:
-		_Rotation_Handler()
-	
-	if Input.is_action_just_pressed("P1_ShootLight"):
-		_Ranged_Attack()
-	
-	Velocity = move_and_slide(Velocity)
+	if Can_Move:
+		if VDirection != 0.0 and not Is_HeavyAttacking and not End_Game:
+			_Acceleration_Handler()
+		else:
+			_Decceleration_Handler()
+		
+		if HDirection != 0.0 and not Is_HeavyAttacking and not End_Game:
+			_Rotation_Handler()
+		
+		if Input.is_action_just_pressed("P1_ShootLight") and not End_Game:
+			_Ranged_Attack()
+		
+		Velocity = move_and_slide(Velocity)
 
 func _Acceleration_Handler():
 	
@@ -97,4 +105,34 @@ func _Print():
 	#print(Velocity, " ", rotation_degrees)
 
 func _on_KnockbackComponent_area_entered(area):
-	_KnockBack(area.global_position)
+	if not End_Game:
+		_KnockBack(area.global_position)
+
+func _End_Game():
+	if Can_Move:
+		End_Game = true
+		set_deferred("$KnockbackComponent/CollisionShape2D.disabled", true)
+		set_deferred("$CheckArea/CollisionShape2D.disabled", true)
+
+func _Reset():
+	if Can_Move:
+		End_Game = false
+		KB_Multi = 5
+		Velocity = Vector2.ZERO
+		rotation_degrees = 0.0
+		global_position = Vector2(-180, 0)
+		$Sprite.visible = true
+		$CheckArea/CollisionShape2D.disabled = false
+		$KnockbackComponent/CollisionShape2D.disabled = false
+
+func _Disable():
+	_Reset()
+	$Sprite.visible = false
+	$CheckArea/CollisionShape2D.disabled = true
+	$KnockbackComponent/CollisionShape2D.disabled = true
+	Can_Move = false
+
+func _Start():
+	Can_Move = true
+	_Reset()
+	print("Start")

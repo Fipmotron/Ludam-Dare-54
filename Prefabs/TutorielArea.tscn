@@ -49,4 +49,12 @@ U / Shoot,
 "
 align = 2
 
+[node name="Button" type="Button" parent="Descriptions"]
+margin_left = -30.0
+margin_top = 78.0
+margin_right = 30.0
+margin_bottom = 98.0
+text = "Return"
+
 [connection signal="area_exited" from="AreaCheck" to="." method="_on_AreaCheck_area_exited"]
+[connection signal="pressed" from="Descriptions/Button" to="." method="_on_Button_pressed"]

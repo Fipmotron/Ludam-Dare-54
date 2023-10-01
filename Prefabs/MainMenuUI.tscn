@@ -41,3 +41,6 @@ margin_bottom = 117.0
 text = "Quit"
 
 [connection signal="pressed" from="TutorielButton" to="." method="_on_TutorielButton_pressed"]
+[connection signal="pressed" from="PVPButton" to="." method="_on_PVPButton_pressed"]
+[connection signal="pressed" from="OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="QuitButton" to="." method="_on_QuitButton_pressed"]
