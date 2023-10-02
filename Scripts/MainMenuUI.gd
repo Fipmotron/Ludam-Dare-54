@@ -20,21 +20,16 @@ func _on_PVPButton_pressed():
 	get_parent().add_child(inst)
 	_Hide_MainMenu()
 
-func _on_OptionsButton_pressed():
-	pass # Replace with function body.
-
 func _on_QuitButton_pressed():
 	get_tree().quit()
 
 func _Hide_MainMenu():
-	$OptionsButton.disabled = true
 	$PVPButton.disabled = true
 	$QuitButton.disabled = true
 	$TutorielButton.disabled = true
 	visible = false
 
 func _Show_MainMenu():
-	$OptionsButton.disabled = false
 	$PVPButton.disabled = false
 	$QuitButton.disabled = false
 	$TutorielButton.disabled = false

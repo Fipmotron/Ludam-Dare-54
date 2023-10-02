@@ -18,18 +18,18 @@ func _process(_delta):
 
 func _Draw_Winner(Player):
 	if  "Player2" in Player:
-		$Control/Label.text = "Player 1 Won"
-		$Control/MainmenuButton.visible = true
-		$Control/MainmenuButton.disabled = false
-		$Control/RestartButton.visible = true
-		$Control/RestartButton.disabled = false
+		$Node2D/Control/Label.text = "Player 1 Won"
+		$Node2D/Control/MainmenuButton.visible = true
+		$Node2D/Control/MainmenuButton.disabled = false
+		$Node2D/Control/RestartButton.visible = true
+		$Node2D/Control/RestartButton.disabled = false
 		print("Player1 won")
 	elif "Player1" in Player:
-		$Control/Label.text = "Player 2 Won"
-		$Control/MainmenuButton.visible = true
-		$Control/MainmenuButton.disabled = false
-		$Control/RestartButton.visible = true
-		$Control/RestartButton.disabled = false
+		$Node2D/Control/Label.text = "Player 2 Won"
+		$Node2D/Control/MainmenuButton.visible = true
+		$Node2D/Control/MainmenuButton.disabled = false
+		$Node2D/Control/RestartButton.visible = true
+		$Node2D/Control/RestartButton.disabled = false
 		print("Player2 won")
 	else:
 		print("Sm went wrong")
@@ -44,12 +44,12 @@ func _on_RestartButton_pressed():
 
 func _Reset():
 	End_Game = false
-	$Control/Label.text = ""
-	$Control/MainmenuButton.visible = false
-	$Control/MainmenuButton.disabled = true
-	$Control/RestartButton.visible = false
-	$Control/RestartButton.disabled = true
-	$Sprite.scale = Vector2(24, 13.5)
+	$Node2D/Control/Label.text = ""
+	$Node2D/Control/MainmenuButton.visible = false
+	$Node2D/Control/MainmenuButton.disabled = true
+	$Node2D/Control/RestartButton.visible = false
+	$Node2D/Control/RestartButton.disabled = true
+	$Sprite.scale = Vector2(18, 18)
 
 func _on_MainmenuButton_pressed():
 	_Reset()

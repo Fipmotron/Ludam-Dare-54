@@ -85,6 +85,8 @@ func _Ranged_Attack():
 	# Get Instance of Bullet
 	var Bullet_Ins = Bullet.instance()
 	
+	$AudioStreamPlayer2D.play()
+	
 	# Add it to World
 	SignalManager.add_child(Bullet_Ins)
 	
@@ -96,6 +98,8 @@ func _KnockBack(SourcePos):
 	var KB_Dir = SourcePos.direction_to(self.global_position)
 	var KB_Strenth = KB_Multi
 	var KB = KB_Dir * KB_Strenth
+	
+	$AudioStreamPlayer2D2.play()
 	
 	global_position += KB
 	KB_Multi += 1
@@ -120,7 +124,7 @@ func _Reset():
 		KB_Multi = 5
 		Velocity = Vector2.ZERO
 		rotation_degrees = 0.0
-		global_position = Vector2(-180, 0)
+		global_position = Vector2(-100, 0)
 		$Sprite.visible = true
 		$CheckArea/CollisionShape2D.disabled = false
 		$KnockbackComponent/CollisionShape2D.disabled = false
